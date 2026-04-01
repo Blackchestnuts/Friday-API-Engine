@@ -1,0 +1,28 @@
+name: Friday Allure 云端战报
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 安装依赖
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: 执行测试引擎 (允许失败以生成报告)
+        run: pytest test_cases/test_engine_runner.py -v --alluredir=allure-results || true
+      - name: 部署 Allure 报告到 GitHub Pages
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        with:
+          allure_results: allure-results
+          allure_history: allure-history
+          github_pages_url: https://${{ github.repository_owner }}.github.io/${{ github.repository_name }}
