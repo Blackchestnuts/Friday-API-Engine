@@ -1,0 +1,26 @@
+# ==========================================
+# Friday 引擎多系统适配配置模板
+# 使用说明：复制此文件，重命名为 env_config.yaml，并填入真实业务信息
+# ==========================================
+systems:
+  # 系统代号（自定义，需与 Excel 中的 system_key 对应）
+  your_system_key:
+    # 系统基础域名
+    base_url: "http://your_system_domain/api_prefix"
+    # 全局请求头
+    headers:
+      Content-Type: "application/json"
+      # Custom-Header: "your_value"
+    
+    # 鉴权配置（告诉引擎如何获取通行证）
+    auth:
+      login_url: "/your/auth/login/path"
+      # query_params: {"lang": " "} # 如果登录接口需要 URL 参数，解开注释
+      payload:
+        username: "your_test_account"
+        password: "your_test_password"
+        # systemBelong: 3
+      # 从返回 JSON 中提取 Token 的路径
+      token_extract_path: "result.token"
+      # 后续请求携带 Token 的 Header 名
+      token_header_name: "X-Access-Token"

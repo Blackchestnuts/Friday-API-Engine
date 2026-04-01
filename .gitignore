@@ -1,0 +1,23 @@
+# Python 编译垃圾
+__pycache__/
+*.py[cod]
+*.so
+
+# 虚拟环境
+venv/
+env/
+
+# IDE 配置
+.vscode/
+.idea/
+
+# 【核心防线】绝对禁止提交真实的本地配置和业务数据
+config/env_config.yaml
+test_data/*_test_cases.xlsx
+!test_data/example_test_cases.xlsx
+
+# 测试报告与日志
+allure-results/
+allure-history/
+reports/
+*.log
