@@ -50,22 +50,11 @@ systems:
         password: "your_password"
       token_extract_path: "result.token"  # 告诉引擎去 JSON 的哪个位置拿 Token
 3. 编写测试用例
-在 test_data/ 目录下新建 Excel 文件（如 biz_cases.xlsx），第一行必须遵循以下中文表头规范：
+在 test_data/ 目录下新建任意名称的 Excel 文件（如 订单业务线.xlsx、用户模块.xlsx）。第一行必须遵循以下中文表头规范：
 
-所属系统
-用例名称
-请求方式
-接口路径
-URL参数
-请求体
-断言状态码
-断言路径
-预期结果
+所属系统	用例名称	请求方式	接口路径	URL参数	请求体	断言状态码	断言路径	预期结果
 your_system_key	查询用户成功	GET	/api/user/info			200	$.success	true
-your_system_key	创建订单	POST	/api/order/create		{"sku":"001"}	200	$.code	1
-
-(提示：URL参数 和 请求体 如果有值，必须符合标准 JSON 格式字符串)
-
+(提示：引擎会自动雷达扫描该目录下所有的 .xlsx 文件并批量执行，无需修改任何 Python 代码)
 4. 执行与查看报告
 bash
 
